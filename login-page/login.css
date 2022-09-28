@@ -1,0 +1,21 @@
+.user {
+    width: 50px;
+    height: 50px;
+    content: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpdwTA1Zd3WfUEM6GpXBoaPHkZwv_XtFafFUISTk6ogOCYscvtCJCCDNxAkjZIGPVIMpA&usqp=CAU');
+}
+
+.sign-in {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    background-color: gainsboro;
+    align-items: center;
+    justify-self: center;
+    margin: 5vh auto;
+    border-radius: 15px;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+}
