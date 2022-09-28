@@ -1,0 +1,15 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    display: flex;
+    width: 90vw;
+    height: 10vh;
+    background-color: gray;
+    border-radius: 15px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 5vw 0 5vw;
+}
