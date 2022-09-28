@@ -1,0 +1,30 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    position: fixed;
+    width: 94%;
+    display: flex;
+    height: 10vh;
+    background-color: gray;
+    border-radius: 15px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 3% 0 3%;
+}
+
+footer {
+    display: flex;
+    height: 10vh;
+    background-color: gray;
+    border-radius: 15px;
+    align-items: center;
+    justify-content: center;
+    padding: 0 3% 0 3%;
+}
+
+.user {
+    content: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpdwTA1Zd3WfUEM6GpXBoaPHkZwv_XtFafFUISTk6ogOCYscvtCJCCDNxAkjZIGPVIMpA&usqp=CAU');
+}
