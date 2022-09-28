@@ -1,0 +1,35 @@
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.user {
+    width: 50px;
+    height: 50px;
+    content: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpdwTA1Zd3WfUEM6GpXBoaPHkZwv_XtFafFUISTk6ogOCYscvtCJCCDNxAkjZIGPVIMpA&usqp=CAU');
+}
+
+.main {
+    width: 100vw;
+    display: flex;
+    gap: 15px;
+}
+
+.content {
+    width: 60%;
+    background-color: lightgray;
+    height: 3000px;
+}
+
+.column {
+    flex: 1;
+    background-color: gray;
+    border-radius: 15px;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+}
