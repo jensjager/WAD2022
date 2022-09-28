@@ -12,7 +12,7 @@ body {
 }
 
 .main {
-    width: 100vw;
+    margin-top: 11vh;
     display: flex;
     gap: 15px;
 }
