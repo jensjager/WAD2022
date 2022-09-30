@@ -4,6 +4,10 @@
     content: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpdwTA1Zd3WfUEM6GpXBoaPHkZwv_XtFafFUISTk6ogOCYscvtCJCCDNxAkjZIGPVIMpA&usqp=CAU');
 }
 
+header {
+    font-size: large;
+}
+
 .sign-in {
     width: 80%;
     display: flex;
@@ -13,9 +17,42 @@
     justify-self: center;
     margin: 5vh auto;
     border-radius: 15px;
+    padding-top: 10vh;
 }
 
 .form {
     display: flex;
     flex-direction: column;
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+}
+
+.form > input, button {
+    font-size: large;
+}
+
+input, button + input, button {
+    margin-top: 2vh;
+}
+
+.welcome {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+}
+
+h2 {
+    font-size: xx-large;
+}
+
+h3 {
+    font-size: x-large;
+    text-align: center;
+}
+
+h2::first-letter {
+    text-transform: uppercase;
+    font-size: xxx-large;
 }
