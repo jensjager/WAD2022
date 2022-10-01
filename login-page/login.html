@@ -1,29 +1,46 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="login.css">
-    <link rel="stylesheet" href="/WAD2022/global.css">
+    <link rel="stylesheet" href="../global.css">
     <title>Login</title>
 </head>
 
 <body>
-    <header>
-        <a href="/WAD2022/index.html" class="header-home">Home</a>
-        <a href="" class="user"></a>
-    </header>
-    <div class="sign-in">
-        <div class="welcome">
-            <h2>Welcome to PostIt</h2>
-            <h3>Create an account or please log in</h3>
-        </div>
-        <form class="form" action="/WAD2022/index.html">
-            <input type="text" class="form-object" placeholder="Email" required>
-            <input type="text" class="form-object" placeholder="Password" required>
-            <button class="form-object" type="submit">Log in</button>
-            <button class="form-object">Forget password</button>
-        </form>
+<!-- Upper navigation bar -->
+<nav>
+    <div>
+        <a href="../index.html">Home</a>
     </div>
+    <a href="./login.html">
+        <!-- The source of the picture: https://www.kindpng.com/picc/m/24-248253_user-profile-default-image-png-clipart-png-download.png -->
+        <img src="../res/images/user_avatar.png" alt="User avatar">
+    </a>
+</nav>
+
+<!-- Sign in section -->
+<div class="sign-in">
+
+    <div class="welcome">
+        <h2>Welcome to PostIt</h2>
+        <a href="#">Create an account</a>
+        <h3>or</h3>
+        <h3>Please log in</h3>
+    </div>
+
+    <form class="form" action="../index.html" method="post">
+        <label for="email">
+            <input type="text" id="email" placeholder="Email" required>
+        </label>
+        <label for="password">
+            <input type="text" id="password" placeholder="Password" required>
+        </label>
+        <button id="submit" type="submit">Log in</button>
+        <a href="#">Forget password</a>
+    </form>
+</div>
 </body>
 </html>
