@@ -1,38 +1,105 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="index.css">
-    <link rel="stylesheet" href="global.css">
-    <title>Document</title>
+    <link rel="stylesheet" href="./index.css">
+    <link rel="stylesheet" href="./global.css">
+    <title>Home</title>
 </head>
 <body>
-    <header>
-        <div>
-            <a href="#" class="header-home">Home</a>
-            <a href="#" class="add-post">Add post</a>
-        </div>
-        <a href="#" class="user user-main"></a>
-    </header>
-    <div class="main">
-        <div class="column column-left"></div>
-        <div class="content">
-            <div class="post">
-                <div class="post-header">
-                    <a href="#" class="user user-post"></a>
-                    <h3 class="date">Oct 22, 2022</h3>
-                </div>
-                <div class="post-body">
-                    IFNEAFAEF AEKFN AKEFNA KENFAKE NFKAENF KAENFK NK A
-                </div>
-                <input type="button" class="post-like">
-            </div>
-        </div>
-        <div class="column column-right"></div>
+
+<!-- Upper navigation bar -->
+<nav>
+    <div>
+        <a href="./index.html">Home</a>
+        <p>|</p>
+        <a href="./addPost/addPost.html">addPost</a>
     </div>
-    <footer>
-        <a href="#">Footer</a>
-    </footer>
+    <a href="./login-page/login.html">
+        <!-- The source of the picture: https://www.kindpng.com/picc/m/24-248253_user-profile-default-image-png-clipart-png-download.png -->
+        <img src="./res/images/user_avatar.png" alt="User avatar">
+    </a>
+</nav>
+
+<!-- Main content -->
+<main>
+    <div class="column"></div>
+    <div class="content">
+        <article>
+            <div class="post-header">
+                <a href="#">
+                    <img src="./res/images/user_avatar.png" alt="User avatar">
+                </a>
+                <h3>Oct 22, 2022</h3>
+            </div>
+            <div class="post-body">
+                <!-- The source of the picture: https://i.err.ee/resize?type=optimize&height=1080&url=https%3A%2F%2Fs.err.ee%2Fphoto%2Fcrop%2F2019%2F10%2F14%2F697169hfafe.jpg -->
+                <img src="./res/images/tartu2022.jpg" alt="Post picture">
+                <p>Tartu 2022</p>
+            </div>
+            <!-- The source of the picture: https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Facebook_Thumb_icon.svg/1024px-Facebook_Thumb_icon.svg.png -->
+            <input type="image" src="./res/images/like.png" alt="Like button">
+        </article>
+        <article>
+            <div class="post-header">
+                <a href="#">
+                    <img src="./res/images/user_avatar.png" alt="User avatar">
+                </a>
+                <h3>Oct 2, 2022</h3>
+            </div>
+            <div class="post-body">
+                <img src="" alt="Post picture">
+                <p>Anyone knows in which room is the lab today?</p>
+            </div>
+            <input type="image" src="./res/images/like.png" alt="Like button">
+        </article>
+        <article>
+            <div class="post-header">
+                <a href="#">
+                    <img src="./res/images/user_avatar.png" alt="User avatar">
+                </a>
+                <h3>Sep 27, 2022</h3>
+            </div>
+            <div class="post-body">
+                <img src="" alt="Post picture">
+                <p>The deadline for this homework is on the 4th of October!</p>
+            </div>
+            <input type="image" src="./res/images/like.png" alt="Like button">
+        </article>
+        <article>
+            <div class="post-header">
+                <a href="#">
+                    <img src="./res/images/user_avatar.png" alt="User avatar">
+                </a>
+                <h3>Sep 15, 2022</h3>
+            </div>
+            <div class="post-body">
+                <!-- The source of the picture: https://tartu.ee/sites/default/files/styles/news_header_image/public/field/image/delta.jpg?itok=S2em_ESa -->
+                <img src="./res/images/delta.jpg" alt="Post picture">
+                <p>Been to the Delta building yet?</p>
+            </div>
+            <input type="image" src="./res/images/like.png" alt="Like button">
+        </article>
+        <article>
+            <div class="post-header">
+                <a href="#">
+                    <img src="./res/images/user_avatar.png" alt="User avatar">
+                </a>
+                <h3>Aug 29, 2022</h3>
+            </div>
+            <div class="post-body">
+                <img src="" alt="Post picture">
+                <p>Have a successful new school year everybody!</p>
+            </div>
+            <input type="image" src="./res/images/like.png" alt="Like button">
+        </article>
+    </div>
+    <div class="column"></div>
+</main>
+<footer>
+    <h3>Footer</h3>
+</footer>
 </body>
 </html>
