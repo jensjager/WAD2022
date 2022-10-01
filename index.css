@@ -29,7 +29,7 @@ main {
 article {
     display: flex;
     flex-direction: column;
-    background-color: lightgray;
+    background-color: gainsboro;
     border-radius: 15px;
     padding: 2%;
 }
