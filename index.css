@@ -65,6 +65,6 @@ div ~ input {
 }
 
 /* If the image source is empty, it doesn't display it */
-img[src=""] {
+img[src="#"] {
     display: none;
 }
