@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="../res/js/index.js"></script>
     <link rel="stylesheet" href="addPost.css">
     <link rel="stylesheet" href="../global.css">
     <title>Add Post</title>
@@ -15,10 +16,14 @@
     <div>
         <a href="../index.html">Home</a>
     </div>
-    <a href="../login-page/login.html">
-        <!-- The source of the picture: https://www.kindpng.com/picc/m/24-248253_user-profile-default-image-png-clipart-png-download.png -->
-        <img src="https://i.ibb.co/8DY3YCm/user-avatar.png" alt="User avatar">
-    </a>
+    <div class="dropdown">
+        <img onclick="toggleDropdown()" class="profile" src="https://i.ibb.co/8DY3YCm/user-avatar.png" alt="User avatar">
+        <div id="user-dropdown" class="dropdown-content">
+            <a href="#">John Doe</a>
+            <a href="#">john.doe@ut.ee</a>
+            <a href="../login-page/login.html">logout</a>
+        </div>
+    </div>
 </nav>
 
 <!-- Post form -->
