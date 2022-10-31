@@ -18,10 +18,14 @@
         <p>|</p>
         <a href="./addPost/addPost.html">addPost</a>
     </div>
-    <a href="./login-page/login.html">
-        <!-- The source of the picture: https://www.kindpng.com/picc/m/24-248253_user-profile-default-image-png-clipart-png-download.png -->
-        <img src="https://i.ibb.co/8DY3YCm/user-avatar.png" alt="User avatar">
-    </a>
+    <div class="dropdown">
+        <img onclick="toggleDropdown()" class="profile" src="https://i.ibb.co/8DY3YCm/user-avatar.png" alt="User avatar">
+        <div id="user-dropdown" class="dropdown-content">
+            <a href="#">John Doe</a>
+            <a href="#">john.doe@ut.ee</a>
+            <a href="#">logout</a>
+        </div>
+    </div>
 </nav>
 
 <!-- Main content -->
