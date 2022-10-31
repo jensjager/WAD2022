@@ -1,18 +1,3 @@
-function toggleDropdown() {
-    // Toggle adding active class to myDropdown
-    document.getElementById("user-dropdown").classList.toggle("active");
-}
-  
-window.onclick = function(event) {
-  if (!event.target.matches('.profile')) {
-    try {
-        document.getElementById("user-dropdown").classList.remove('active')
-    } catch (e) {
-        console.log(e);
-    }
-  }
-}
-
 function createHeader(json) {
     // Create header div
     let header = document.createElement("div");
@@ -83,6 +68,7 @@ window.onload = () => {
         })
         // In case something goes wrong, display info
         .catch(() => {
+            console.log("An error has occured")
             let posts = document.getElementsByClassName("content")[0];
             let articleElement = document.createElement("article");
 
