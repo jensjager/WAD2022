@@ -58,13 +58,16 @@ footer {
     border-radius: 20px;
     flex-direction: column;
     right: 0;
+    font-size: large;
 }
 
 #dropdown-content a {
     padding: 16px;
     min-width: 200px;
+    transition: background-color 1s, font-size 0.2s;
 }
 
 .dropdown a:hover {
     background-color: #a3a3a3;
+    font-size: x-large;
 }
