@@ -1,18 +1,15 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link>
-    <router-link to="/signup">Sign up</router-link>
-  </nav>
+  <p>Bossid © 2022</p>
 </template>
 
 <script>
 export default {
-  name: "Header"
+  name: "Footer"
 }
 </script>
 
 <style scoped>
-nav {
+p {
   box-sizing: border-box;
   position: fixed;
   display: flex;
@@ -21,18 +18,11 @@ nav {
   background-color: gray;
   border-radius: 15px;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   padding: 0 3vw 0 3vw;
-  margin: 1vw;
+  margin: 0 1vw;
   font-size: x-large;
+  bottom: 0;
 }
 
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-nav a.router-link-exact-active {
-  color: #42b983;
-}
 </style>
