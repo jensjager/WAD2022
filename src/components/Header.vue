@@ -13,26 +13,27 @@ export default {
 
 <style scoped>
 nav {
-  box-sizing: border-box;
   position: fixed;
   display: flex;
-  width: 98%;
+  box-sizing: border-box;
+  width: 100%;
   height: 10vh;
   background-color: gray;
   border-radius: 15px;
   align-items: center;
   justify-content: space-between;
-  padding: 0 3vw 0 3vw;
-  margin: 1vw;
+  padding: 0 3% 0 3%;
   font-size: x-large;
+  z-index: 1;
 }
 
-nav a {
+a {
   font-weight: bold;
   color: #2c3e50;
+  text-decoration: none;
 }
 
-nav a.router-link-exact-active {
+a.router-link-exact-active {
   color: #42b983;
 }
 </style>

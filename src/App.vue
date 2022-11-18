@@ -1,9 +1,7 @@
 <template>
-  <Header></Header>
-  <Sidebar class="right"></Sidebar>
+  <Header/>
   <router-view/>
-  <Sidebar class="left"></Sidebar>
-  <Footer></Footer>
+  <Footer/>
 </template>
 
 <style>
@@ -11,6 +9,7 @@
   margin: 0;
   padding: 0;
 }
+
 #app {
   position: relative;
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -24,9 +23,8 @@
 <script>
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import Sidebar from "@/components/Sidebar"
 
 export default {
-  components: {Header, Footer, Sidebar}
+  components: {Header, Footer}
 }
 </script>
