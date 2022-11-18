@@ -9,8 +9,9 @@
       <p>{{ post.body }}</p>
     </div>
     <div class="footer">
-      <input type="image" :src="require('@/res/like.png')" alt="Like button"/>
-      <p>0 likes</p>
+      <input v-on:click="likePost(post.id)" type="image" src="/res/images/like.png" alt="Like button"/>
+      <p v-if="post.likes === 1">{{ post.likes }} like</p>
+      <p v-else>{{ post.likes }} likes</p>
     </div>
   </article>
 </template>
@@ -18,7 +19,12 @@
 <script>
 export default {
   name: "Post",
-  props: ['post']
+  props: ['post'],
+  methods: {
+    likePost(postId) {
+      this.$store.dispatch("increaseLikeAction", postId)
+    }
+  }
 }
 </script>
 
