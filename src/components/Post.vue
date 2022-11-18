@@ -1,11 +1,11 @@
 <template>
   <article>
     <div class="header">
-      <img class="avatar" v-bind:src="post.userAvatar" alt="User avatar"/>
+      <img :src="post.userAvatar" alt="User avatar"/>
       <p>{{ post.date }}</p>
     </div>
     <div class="body">
-      <img class="image" v-if="post.image !== '#'" v-bind:src="post.image" alt="Post picture"/>
+      <img v-if="post.image !== '#'" :src="post.image" alt="Post picture"/>
       <p>{{ post.body }}</p>
     </div>
     <div class="footer">
@@ -44,13 +44,13 @@ article {
   justify-content: space-between;
 }
 
-.avatar {
+.header img {
   width: 3rem;
   height: auto;
   border-radius: 1rem;
 }
 
-.image {
+.body img {
   width: 100%;
   object-fit: contain;
 }

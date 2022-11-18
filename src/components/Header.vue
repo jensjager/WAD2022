@@ -33,7 +33,7 @@ a {
   text-decoration: none;
 }
 
-a.router-link-exact-active {
+a.router-link-exact-active, a:hover {
   color: #42b983;
 }
 </style>
