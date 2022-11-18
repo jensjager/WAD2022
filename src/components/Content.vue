@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Post/>
+    <Post v-for="post in $store.state.posts" :post="post"/>
   </div>
 </template>
 
@@ -19,7 +19,7 @@ div {
   width: 60%;
   display: flex;
   flex-direction: column;
-  gap: 1vh;
+  gap: 3vh;
 }
 
 @media (max-width: 600px) {

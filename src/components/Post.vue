@@ -1,12 +1,12 @@
 <template>
   <article>
     <div class="header">
-      <img class="avatar" src="https://i.ibb.co/8DY3YCm/user-avatar.png" alt="User avatar"/>
-      <p>Date</p>
+      <img class="avatar" v-bind:src="post.userAvatar" alt="User avatar"/>
+      <p>{{ post.date }}</p>
     </div>
     <div class="body">
-      <img class="image" src="https://pbs.twimg.com/media/EbqR7PPWoAUzh4Y?format=jpg&name=large" alt="Post picture"/>
-      <p>Post body</p>
+      <img class="image" v-if="post.image !== '#'" v-bind:src="post.image" alt="Post picture"/>
+      <p>{{ post.body }}</p>
     </div>
     <div class="footer">
       <input type="image" :src="require('@/res/like.png')" alt="Like button"/>
@@ -17,7 +17,8 @@
 
 <script>
 export default {
-  name: "Post"
+  name: "Post",
+  props: ['post']
 }
 </script>
 
