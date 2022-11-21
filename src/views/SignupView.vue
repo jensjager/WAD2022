@@ -1,5 +1,16 @@
 <template>
-  <div class="about">
-    <h1>This is an about page</h1>
+  <div class="signup">
+    <SignupContent/>
   </div>
 </template>
+
+<script>
+import SignupContent from "@/components/SignupContent";
+
+export default {
+  name: 'SignupView',
+  components: {
+    SignupContent
+  }
+}
+</script>
