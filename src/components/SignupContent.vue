@@ -8,7 +8,7 @@
       <label>Password</label>
       <input type="text" id="password" v-model="password" placeholder="Password" required>
     </div>
-    <button id="submit" type="submit">Submit</button>
+    <button id="submit" type="submit">Signup</button>
     <div v-for="error in errorList" id="invalidPasswordText">
       <p class="textBelowSubmit">{{ error }}</p>
     </div>
