@@ -44,6 +44,7 @@ button {
   border-radius: 15px;
   border: none;
   font-size: large;
+  cursor: pointer;
 }
 
 @media (max-width: 600px) {
