@@ -132,6 +132,7 @@ input, button, label {
   margin: 0 5vw;
   text-align: start;
   font-weight: bold;
+  width: 90%
 }
 
 @media (max-width: 700px) {
