@@ -129,9 +129,10 @@ input, button, label {
   display: flex;
   flex-direction: column;
   gap: 1vh;
-  margin: 0 5vw;
   text-align: start;
   font-weight: bold;
+  width: 90%;
+  font-size: 0.8rem;
 }
 
 @media (max-width: 700px) {
