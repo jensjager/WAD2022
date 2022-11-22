@@ -64,6 +64,9 @@ export default {
         //Adds the text "successful" under the submit button. Currently commented out, because it doesn't seem to be a requirement.
         //this.errorList.push('Successful')
         console.log("Correct password");
+
+        // If password is correct, redirect to home view
+        this.$router.push('/')
       }
     }
   },
