@@ -1,4 +1,4 @@
-import {createRouter, createWebHashHistory} from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 
 const routes = [
@@ -11,11 +11,15 @@ const routes = [
         path: '/signup',
         name: 'signup',
         component: () => import('../views/SignupView.vue')
+    },
+    {
+        path: '/:catchAll(.*)',
+        redirect: { name: 'home' }
     }
 ]
 
 const router = createRouter({
-    history: createWebHashHistory(),
+    history: createWebHistory(),
     routes
 })
 
