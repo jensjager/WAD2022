@@ -1,17 +1,38 @@
 import {createRouter, createWebHistory} from 'vue-router';
 import Home from "@/views/Home.vue";
 import Contacts from "@/views/Contacts.vue";
+import Login from "@/views/Login.vue";
+import Signup from "@/views/Signup.vue";
+import auth from "../auth"
 
 const routes = [
     {
         path: '/',
         name: 'Home',
         component: Home,
+        beforeEnter: async (to, from, next) => {
+            let authResult = await auth.authenticated();
+            if (!authResult) {
+                next('/login');
+            } else {
+                next()
+            }
+        }
     },
     {
         path: '/contacts',
         name: 'Contacts',
         component: Contacts
+    },
+    {
+        path: '/login',
+        name: 'Login',
+        component: Login
+    },
+    {
+        path: '/signup',
+        name: 'Signup',
+        component: Signup
     },
     {
         path: '/:catchAll(.*)',

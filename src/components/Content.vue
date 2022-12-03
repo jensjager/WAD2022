@@ -19,6 +19,23 @@ export default {
   name: 'Content',
   components: {
     Post
+  },
+  methods: {
+    logout() {
+      fetch('http://localhost:3000/auth/logout', {
+        credentials: "include"
+      })
+          .then(response => response.json())
+          .then(data => {
+            console.log(data);
+            console.log('jwt removed');
+            this.$router.push('/login')
+          })
+          .catch(e => {
+            console.log(e);
+            console.log('error with logout')
+          })
+    }
   }
 }
 </script>
