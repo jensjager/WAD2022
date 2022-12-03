@@ -18,17 +18,23 @@ main {
   padding: 5vh 0 7vh 0;
   width: 100%;
   min-height: 78vh;
+  font-size: larger;
 }
 
 div {
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
-  padding: 5%;
+  padding: 5% 3% 3% 3%;
   border-radius: 20px;
   width: 80%;
   height: 40vh;
+  gap: 7.5%;
   background-color: gainsboro;
+}
+
+h2, h3, p {
+  margin: 0;
 }
 </style>
 

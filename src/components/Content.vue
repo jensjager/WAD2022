@@ -1,7 +1,8 @@
 <template>
   <div class="home">
-    <button>Logout</button>
-    <Post/>
+    <div class="post-buttons">
+      <button @click="logout">Logout</button>
+    </div>
     <Post/>
     <Post/>
     <div class="post-buttons">
@@ -28,6 +29,22 @@ export default {
   display: flex;
   flex-direction: column;
   gap: 2vh;
+}
+
+button {
+  width: 30%;
+  max-width: 300px;
+  height: 4vh;
+  border-radius: 15px;
+  background-color: #8badda;
+  border: 0;
+  cursor: pointer;
+  font-size: medium;
+}
+
+.post-buttons {
+  display: flex;
+  justify-content: space-evenly;
 }
 
 @media (max-width: 600px) {

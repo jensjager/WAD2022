@@ -19,12 +19,11 @@ article {
   padding: 0 5% 0 5%;
   border-radius: 15px;
   background-color: gainsboro;
-  text-align: start;
+  text-align: end;
   font-size: larger;
 }
 
 .header {
   display: flex;
-  justify-content: end;
 }
 </style>
