@@ -3,24 +3,25 @@
     <div class="post-buttons">
       <button @click="logout">Logout</button>
     </div>
-    <Post/>
-    <Post/>
+    <Posts/>
     <div class="post-buttons">
-      <button>Add post</button>
+      <button @click="addPost">Add post</button>
       <button>Delete all</button>
     </div>
   </div>
 </template>
 
 <script>
-import Post from '@/components/Post.vue'
+import Posts from '@/components/Posts.vue'
+import store from '@/store';
 
 export default {
   name: 'Content',
   components: {
-    Post
+    Posts
   },
   methods: {
+      
     logout() {
       fetch('http://localhost:3000/auth/logout', {
         credentials: "include"
@@ -28,12 +29,28 @@ export default {
           .then(response => response.json())
           .then(data => {
             console.log(data);
+            store.commit('setUserId', '')
             console.log('jwt removed');
             this.$router.push('/login')
           })
           .catch(e => {
             console.log(e);
             console.log('error with logout')
+          })
+    },
+    addPost() {
+      fetch('http://localhost:3000/auth/authenticate', {
+        credentials: "include"
+      })
+          .then(response => response.json())
+          .then(data => {
+            console.log(data);
+            console.log('passed authentication');
+            this.$router.push('/addPost')
+          })
+          .catch(e => {
+            console.log(e);
+            console.log('error with authentication')
           })
     }
   }

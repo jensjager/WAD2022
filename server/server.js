@@ -55,10 +55,31 @@ app.get('/auth/authenticate', async (req, res) => {
 });
 
 // Fetch posts
-// TODO: GET - fetch all posts
+app.get('/api/posts', async (req, res) => {
+    try {
+        console.log("Fetch all posts request received");
+        const posts = await pool.query(
+            "SELECT body, post_date FROM posts"
+        );
+        res.json(posts.rows);
+    } catch (err) {
+        console.error(err.message);
+    }
+});
 
 // Add a post
-// TODO: POST - add a post
+app.post('/api/posts', async(req, res) => {
+    try {
+        console.log("Add post request received");
+        const post = req.body;
+        const newpost = await pool.query(
+            "INSERT INTO posts(user_id, body, post_date) values ($1, $2, $3)    RETURNING*", [post.user_id, post.body, post.post_date]
+        );
+        res.json(newpost);
+    } catch (err) {
+        console.error(err.message);
+    }
+});
 
 // Fetch specific post
 // TODO: GET - fetch a specific post

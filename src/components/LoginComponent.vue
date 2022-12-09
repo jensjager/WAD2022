@@ -19,6 +19,8 @@
 </template>
 
 <script>
+import store from '@/store';
+
 export default {
   name: "LoginComponent",
   data: () => {
@@ -42,9 +44,10 @@ export default {
         credentials: "include",
         body: JSON.stringify(data)
       })
-          .then(response => response.json)
+          .then(response => response.json())
           .then(data => {
             console.log(data);
+            store.commit('setUserId', data.user_id);
             this.$router.push("/");
           })
           .catch(e => {

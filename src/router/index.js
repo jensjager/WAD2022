@@ -3,6 +3,7 @@ import Home from "@/views/Home.vue";
 import Contacts from "@/views/Contacts.vue";
 import Login from "@/views/Login.vue";
 import Signup from "@/views/Signup.vue";
+import addPost from "@/views/AddPost.vue"
 import auth from "../auth"
 
 const routes = [
@@ -35,9 +36,14 @@ const routes = [
         component: Signup
     },
     {
+        path: '/addPost',
+        name: 'AddPost',
+        component: addPost
+    },
+    {
         path: '/:catchAll(.*)',
         redirect: {name: 'Home'}
-    }
+    },
 ];
 
 const router = createRouter({
