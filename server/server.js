@@ -82,10 +82,33 @@ app.post('/api/posts', async(req, res) => {
 });
 
 // Fetch specific post
-// TODO: GET - fetch a specific post
+app.get('/api/posts/:id', async(req, res) => {
+    try {
+        console.log("get a post with route parameter %s request has arrived", req.params.id);
+        const { id } = req.params;
+        const posts = await pool.query(
+            "SELECT * FROM posts WHERE post_id = $1", [id]
+        );
+        res.json(posts.rows[0]);
+    } catch (err) {
+        console.error(err.message);
+    }
+});
 
 // Update a post (only owner can update his own post)
-// TODO: PUT - update a post
+app.put('/api/posts/:id', async(req, res) => {
+    try {
+        const { id } = req.params;
+        const post = req.body;
+        console.log("update request has arrived");
+        const updatepost = await pool.query(
+            "UPDATE posts SET (title, body, urllink) = ($2, $3, $4) WHERE id = $1", [id, post.title, post.body, post.urllink]
+        );
+        res.json(updatepost);
+    } catch (err) {
+        console.error(err.message);
+    }
+});
 
 // Delete a post (only owner can delete his own post)
 // TODO: DELETE - delete a post

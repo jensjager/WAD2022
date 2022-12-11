@@ -1,6 +1,6 @@
 <template>
     <div class="Posts">
-        <div v-for="post in posts" :key="post.post_id">
+        <div v-for="(post, index) in posts" :key="post.post_id" @click="goToPost(index)">
           <article>
             <div class="header">
               <p> {{ new Date(post.post_date).toLocaleDateString() }} </p>
@@ -27,6 +27,9 @@
           .then((data) => (this.posts = data))
           .catch((err) => console.log(err.message));
       },
+      goToPost(id) {
+        this.$router.push('/posts/'+id)
+      }
     },
     mounted() {
       this.fetchPosts();
