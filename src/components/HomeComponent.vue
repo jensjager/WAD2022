@@ -3,7 +3,14 @@
     <div class="post-buttons">
       <button @click="logout">Logout</button>
     </div>
-    <AllPostsComponent/>
+    <div class="posts">
+      <article class="post" v-for="post in posts" :key="post.post_id" @click="goToPost(post)">
+        <div class="header">
+          <p> {{ new Date(post.post_date).toLocaleDateString() }} </p>
+        </div>
+        <p class="body"> {{ post.body }} </p>
+      </article>
+    </div>
     <div class="post-buttons">
       <button @click="addPost">Add post</button>
       <button @click="deletePosts">Delete all</button>
@@ -12,15 +19,20 @@
 </template>
 
 <script>
-import AllPostsComponent from '@/components/AllPostsComponent.vue';
-import store from '@/store';
-
 export default {
   name: 'HomeComponent',
-  components: {
-    AllPostsComponent
+  data() {
+    return {
+      posts: []
+    }
   },
   methods: {
+    fetchPosts() {
+      fetch(`http://localhost:3000/api/posts`)
+          .then(response => response.json())
+          .then(data => this.posts = data)
+          .catch(error => console.log(error.message));
+    },
     logout() {
       fetch('http://localhost:3000/auth/logout', {
         credentials: "include"
@@ -28,33 +40,38 @@ export default {
           .then(response => response.json())
           .then(data => {
             console.log(data);
-            store.commit('setUserId', '')
-            console.log('jwt removed');
             this.$router.push('/login')
           })
           .catch(e => {
             console.log(e);
-            console.log('error with logout')
           })
     },
+    goToPost(post) {
+      this.$router.push('/posts/' + post.post_id)
+    },
     addPost() {
-      fetch('http://localhost:3000/auth/authenticate', {
+      this.$router.push('/addPost')
+    },
+    deletePosts() {
+      fetch(`http://localhost:3000/api/delete`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json"
+        },
         credentials: "include"
       })
           .then(response => response.json())
           .then(data => {
             console.log(data);
-            console.log('passed authentication');
-            this.$router.push('/addPost')
+            this.fetchPosts();
           })
-          .catch(e => {
-            console.log(e);
-            console.log('error with authentication')
-          })
-    },
-    deletePosts() {
-      console.log(store.getters.getUserId)
+          .catch(error => {
+            console.log(error);
+          });
     }
+  },
+  mounted() {
+    this.fetchPosts();
   }
 }
 </script>
@@ -65,6 +82,34 @@ export default {
   display: flex;
   flex-direction: column;
   gap: 2vh;
+}
+
+.posts {
+  display: flex;
+  flex-direction: column;
+  gap: 1vh
+}
+
+article {
+  box-sizing: border-box;
+  padding: 5%;
+  border-radius: 15px;
+  background-color: gainsboro;
+  text-align: start;
+  font-size: larger;
+}
+
+.header {
+  display: flex;
+  justify-content: flex-end;
+}
+
+p {
+  margin: 0;
+}
+
+.post:hover {
+  cursor: pointer;
 }
 
 button {

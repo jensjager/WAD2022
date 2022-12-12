@@ -1,6 +1,6 @@
 <template>
   <main>
-    <PostComponent/>
+    <APostComponent/>
   </main>
 </template>
 
@@ -16,10 +16,10 @@ main {
 </style>
 
 <script>
-import PostComponent from "@/components/PostComponent.vue";
+import APostComponent from "@/components/APostComponent.vue";
 
 export default {
   name: "APost",
-  components: {PostComponent}
+  components: {APostComponent}
 }
 </script>

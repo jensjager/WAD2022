@@ -3,11 +3,12 @@
     <form>
       <h3>Add Post</h3>
       <div class="row">
-        <label for="body">Body: </label>
-        <input name="body" type="text" id="body" required v-model="body"/>
+        <label for="body">Body:</label>
+        <input name="body" type="text" id="body" required v-model="post.body"/>
       </div>
       <div class="row">
-        <button type="button" @click="addPost">Add Post</button>
+        <button type="button" @click="updatePost()">Update Post</button>
+        <button type="button" @click="deletePost()">Delete Post</button>
       </div>
       <p v-if="validUser">{{ validUser }}</p>
     </form>
@@ -16,26 +17,25 @@
 
 <script>
 export default {
-  name: "AddPostComponent",
+  name: "APostComponent",
   data() {
     return {
-      body: "",
+      post: {
+        body: "",
+        post_date: "",
+      },
       validUser: ""
-    }
+    };
   },
   methods: {
-    addPost() {
-      const data = {
-        body: this.body,
-        post_date: new Date(),
-      };
-      fetch("http://localhost:3000/api/posts", {
-        method: "POST",
+    updatePost() {
+      fetch(`http://localhost:3000/api/posts/${this.post.post_id}`, {
+        method: "PUT",
         headers: {
           "Content-Type": "application/json",
         },
         credentials: "include",
-        body: JSON.stringify(data),
+        body: JSON.stringify(this.post),
       })
           .then(response => response.json())
           .then(data => {
@@ -46,11 +46,38 @@ export default {
               this.$router.push("/");
             }
           })
-          .catch(e => {
-            console.log(e);
+          .catch(error => {
+            console.log(error);
+          });
+    },
+    deletePost() {
+      fetch(`http://localhost:3000/api/posts/${this.post.post_id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        credentials: "include"
+      })
+          .then(response => response.json())
+          .then(data => {
+            console.log(data);
+            if (data.error) {
+              this.validUser = data.error
+            } else {
+              this.$router.push("/");
+            }
+          })
+          .catch(error => {
+            console.log(error);
           });
     },
   },
+  mounted() {
+    fetch(`http://localhost:3000/api/posts/${this.$route.params.id}`)
+        .then(response => response.json())
+        .then(data => this.post = data)
+        .catch(error => console.log(error.message));
+  }
 };
 </script>
 

@@ -33,7 +33,7 @@ app.get('/auth/authenticate', async (req, res) => {
     const token = req.cookies.jwt;
 
     try {
-        if (token) { // If token exists
+        if (token) {
             await jwt.verify(token, secret, error => {
                 if (error) {
                     console.log(error.message);
@@ -56,78 +56,147 @@ app.get('/auth/authenticate', async (req, res) => {
 
 // Fetch posts
 app.get('/api/posts', async (req, res) => {
+    console.log("Fetch all posts request received");
+
     try {
-        console.log("Fetch all posts request received");
+        // Gets all posts from posts table
         const posts = await pool.query(
-            "SELECT post_id, user_id, body, post_date FROM posts"
+            "SELECT post_id, body, post_date FROM posts"
         );
         res.json(posts.rows);
-    } catch (err) {
-        console.error(err.message);
+    } catch (error) {
+        console.error(error.message);
     }
 });
 
 // Add a post
-app.post('/api/posts', async(req, res) => {
+app.post('/api/posts', async (req, res) => {
+    console.log("Add post request received");
+    const token = req.cookies.jwt;
+
     try {
-        console.log("Add post request received");
+        if (!token) return res.status(401).json({error: "Unauthenticated user"});
+
+        // Gets the id of the user
+        const decoded = jwt.verify(token, secret, (error, decoded) => {
+            if (error) return res.status(401).json({error: "Unauthenticated user"});
+            else return decoded;
+        });
+
         const post = req.body;
         const newpost = await pool.query(
-            "INSERT INTO posts(user_id, body, post_date) values ($1, $2, $3)    RETURNING*", [post.user_id, post.body, post.post_date]
+            "INSERT INTO posts(user_id, body, post_date) values ($1, $2, $3)    RETURNING*", [decoded.id, post.body, post.post_date]
         );
         res.json(newpost);
-    } catch (err) {
-        console.error(err.message);
+    } catch (error) {
+        console.error(error.message);
     }
 });
 
 // Fetch specific post
-app.get('/api/posts/:id', async(req, res) => {
+app.get('/api/posts/:id', async (req, res) => {
+    console.log("Get a post with route parameter %s request has arrived", req.params.id);
+
     try {
-        console.log("get a post with route parameter %s request has arrived", req.params.id);
-        const { id } = req.params;
+        const {id} = req.params;
+        // Gets the posts with the given id
         const posts = await pool.query(
-            "SELECT * FROM posts WHERE post_id = $1", [id]
+            "SELECT post_id, body, post_date FROM posts WHERE post_id = $1", [id]
         );
         res.json(posts.rows[0]);
-    } catch (err) {
-        console.error(err.message);
+    } catch (error) {
+        console.error(error.message);
     }
 });
 
 // Update a post (only owner can update his own post)
-app.put('/api/posts/:id', async(req, res) => {
+app.put('/api/posts/:id', async (req, res) => {
+    console.log("Update request has arrived");
+    const token = req.cookies.jwt;
+
     try {
-        const { id } = req.params;
-        const post = req.body;
-        console.log("update request has arrived");
+        if (!token) return res.status(401).json({error: "Unauthenticated user"});
+
+        // Used to get id of current authenticated users
+        const decoded = jwt.verify(token, secret, (error, decoded) => {
+            if (error) return res.status(401).json({error: "Unauthenticated user"});
+            else return decoded;
+        });
+        const {id} = req.params;
+        const newPostBody = req.body.body;
+
+        const post = await pool.query(
+            "SELECT * FROM posts WHERE post_id = $1", [id]
+        );
+
+        if (post.rows[0].user_id !== decoded.id) return res.status(401).json({error: "You are not the owner of this post"});
+
         const updatepost = await pool.query(
-            "UPDATE posts SET (body, post_date) = ($2,$3) WHERE post_id = $1", [id, post.body, new Date().toLocaleDateString()]
+            "UPDATE posts SET body = $2 WHERE post_id = $1", [id, newPostBody]
         );
         res.json(updatepost);
-    } catch (err) {
-        console.error(err.message);
+    } catch (error) {
+        console.error(error.message);
     }
 });
 
 // Delete a post (only owner can delete his own post)
-app.delete('/api/posts/:id', async(req, res) => {
+app.delete('/api/posts/:id', async (req, res) => {
+    console.log("Delete a post request has arrived");
+    const token = req.cookies.jwt;
+
     try {
-        const { id } = req.params;
-        console.log("delete a post request has arrived");
+        if (!token) return res.status(401).json({error: "Unauthenticated user"});
+
+        // Used to get id of current authenticated user
+        const decoded = jwt.verify(token, secret, (error, decoded) => {
+            if (error) return res.status(401).json({error: "Unauthenticated user"});
+            else return decoded;
+        });
+        const {id} = req.params;
+
+        const post = await pool.query(
+            "SELECT * FROM posts WHERE post_id = $1", [id]
+        );
+
+        if (post.rows[0].user_id !== decoded.id) return res.status(401).json({error: "You are not the owner of this post"});
+
         const deletepost = await pool.query(
             "DELETE FROM posts WHERE post_id = $1 RETURNING*", [id]
         );
         res.json(deletepost);
-    } catch (err) {
-        console.error(err.message);
+    } catch (error) {
+        console.error(error.message);
+    }
+});
+
+// Delete all user posts
+app.delete('/api/delete', async (req, res) => {
+    console.log("Delete all user posts request has arrived");
+    const token = req.cookies.jwt;
+
+    try {
+        if (!token) return res.status(401).json({error: "Unauthenticated user"});
+
+        const decoded = jwt.verify(token, secret, (error, decoded) => {
+            if (error) return res.status(401).json({error: "Unauthenticated user"});
+            else return decoded;
+        });
+
+        const deletePosts = await pool.query(
+            "DELETE FROM posts WHERE user_id = $1 RETURNING*", [decoded.id]
+        );
+        res.json(deletePosts);
+    } catch (error) {
+        console.error(error.message);
     }
 });
 
 // Sign up a user
 app.post('/auth/signup', async (req, res) => {
+    console.log('Signup request received');
+
     try {
-        console.log('Signup request received');
         const {email, password} = req.body;
 
         // Add salt to the password and hash it
@@ -158,7 +227,6 @@ app.post('/auth/login', async (req, res) => {
         console.log('Login request received');
         const {email, password} = req.body;
 
-        // Queries the user
         const user = await pool.query("SELECT * FROM users WHERE email = $1", [email]);
 
         // If no user with this email exists

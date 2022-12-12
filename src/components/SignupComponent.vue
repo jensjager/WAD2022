@@ -10,6 +10,7 @@
         <input type="text" name="password" placeholder="Password" v-model="password" required>
       </div>
       <button type="submit">Signup</button>
+      <p v-if="invalidSignup">{{ invalidSignup }}</p>
     </form>
   </div>
 </template>
@@ -20,7 +21,8 @@ export default {
   data: () => {
     return {
       email: "",
-      password: ""
+      password: "",
+      invalidSignup: ""
     }
   },
   methods: {
@@ -41,12 +43,11 @@ export default {
           .then(response => response.json())
           .then(data => {
             console.log(data);
-            store.commit('setUserId', data.user_id);
             this.$router.push("/");
           })
           .catch(e => {
             console.log(e);
-            console.log("error with signup");
+            this.invalidSignup = "User already exists"
           });
     }
   }
@@ -106,7 +107,8 @@ label {
   text-align: right;
 }
 
-input, button, label {
-  font-size: larger;
+input, button, label, p {
+  font-size: large;
+  margin: 0;
 }
 </style>

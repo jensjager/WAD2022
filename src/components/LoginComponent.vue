@@ -14,19 +14,19 @@
         <p>Or</p>
         <button type="button" @click="this.$router.push('/signup')">Signup</button>
       </div>
+      <p v-if="invalidLogin">{{ invalidLogin }}</p>
     </form>
   </div>
 </template>
 
 <script>
-import store from '@/store';
-
 export default {
   name: "LoginComponent",
   data: () => {
     return {
       email: "",
-      password: ""
+      password: "",
+      invalidLogin: ""
     }
   },
   methods: {
@@ -47,12 +47,14 @@ export default {
           .then(response => response.json())
           .then(data => {
             console.log(data);
-            store.commit('setUserId', data.user_id);
-            this.$router.push("/");
+            if (data.error) {
+              this.invalidLogin = data.error
+            } else {
+              this.$router.push("/");
+            }
           })
           .catch(e => {
             console.log(e);
-            console.log("error with login")
           })
     }
   }
@@ -113,7 +115,7 @@ label {
 }
 
 input, button, label, p {
-  font-size: larger;
+  font-size: large;
   margin: 0;
 }
 </style>
