@@ -19,7 +19,7 @@ main {
 import PostComponent from "@/components/PostComponent.vue";
 
 export default {
-  name: "Post.vue",
+  name: "APost",
   components: {PostComponent}
 }
 </script>

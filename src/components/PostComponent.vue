@@ -22,7 +22,7 @@
   import login from "@/views/Login";
 
   export default  {
-    name: "Post",
+    name: "PostComponent",
     data() {
       return {
         post: {

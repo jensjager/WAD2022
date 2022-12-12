@@ -19,7 +19,7 @@ main {
 import AddPostComponent from "@/components/AddPostComponent.vue";
 
 export default {
-  name: "AddPost.vue",
+  name: "AddPost",
   components: {AddPostComponent}
 }
 </script>

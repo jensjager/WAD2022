@@ -16,7 +16,7 @@
   import store from "@/store";
 
   export default {
-    name: "Posts",
+    name: "AllPostsComponent",
     data() {
       return {
         posts: [],

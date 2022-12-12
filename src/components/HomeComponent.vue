@@ -3,7 +3,7 @@
     <div class="post-buttons">
       <button @click="logout">Logout</button>
     </div>
-    <Posts/>
+    <AllPostsComponent/>
     <div class="post-buttons">
       <button @click="addPost">Add post</button>
       <button @click="deletePosts">Delete all</button>
@@ -12,13 +12,13 @@
 </template>
 
 <script>
-import Posts from '@/components/Posts.vue'
+import AllPostsComponent from '@/components/AllPostsComponent.vue';
 import store from '@/store';
 
 export default {
-  name: 'Content',
+  name: 'HomeComponent',
   components: {
-    Posts
+    AllPostsComponent
   },
   methods: {
     logout() {

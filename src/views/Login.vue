@@ -19,7 +19,7 @@ main {
 import LoginComponent from "@/components/LoginComponent.vue";
 
 export default {
-  name: "Login.vue",
+  name: "Login",
   components: {LoginComponent}
 }
 </script>

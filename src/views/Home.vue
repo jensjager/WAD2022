@@ -1,7 +1,7 @@
 <template>
   <main>
     <div class='sidebar'/>
-    <Content/>
+    <HomeComponent/>
     <div class='sidebar'/>
   </main>
 </template>
@@ -30,12 +30,12 @@ main {
 </style>
 
 <script>
-import Content from '@/components/Content.vue';
+import HomeComponent from '@/components/HomeComponent.vue';
 
 export default {
-  name: 'HomeView',
+  name: 'Home',
   components: {
-    Content
+    HomeComponent
   }
 }
 </script>

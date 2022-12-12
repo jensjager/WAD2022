@@ -3,9 +3,9 @@ import Home from "@/views/Home.vue";
 import Contacts from "@/views/Contacts.vue";
 import Login from "@/views/Login.vue";
 import Signup from "@/views/Signup.vue";
-import addPost from "@/views/AddPost.vue"
+import AddPost from "@/views/AddPost.vue"
+import APost from "@/views/APost.vue";
 import auth from "../auth"
-import Post from "@/views/Post";
 
 const routes = [
     {
@@ -39,12 +39,12 @@ const routes = [
     {
         path: '/addPost',
         name: 'AddPost',
-        component: addPost
+        component: AddPost
     },
     {
         path: '/posts/:id',
         name: 'Post',
-        component: Post
+        component: APost
     },
     {
         path: '/:catchAll(.*)',

@@ -18,9 +18,8 @@
   <script>
   import store from '@/store';
   
-  
   export default {
-    name: "AddPost",
+    name: "AddPostComponent",
     data() {
       return {
         post: {
