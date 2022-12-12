@@ -59,7 +59,7 @@ app.get('/api/posts', async (req, res) => {
     try {
         console.log("Fetch all posts request received");
         const posts = await pool.query(
-            "SELECT body, post_date FROM posts"
+            "SELECT post_id, user_id, body, post_date FROM posts"
         );
         res.json(posts.rows);
     } catch (err) {
@@ -102,7 +102,7 @@ app.put('/api/posts/:id', async(req, res) => {
         const post = req.body;
         console.log("update request has arrived");
         const updatepost = await pool.query(
-            "UPDATE posts SET (title, body, urllink) = ($2, $3, $4) WHERE id = $1", [id, post.title, post.body, post.urllink]
+            "UPDATE posts SET (body, post_date) = ($2,$3) WHERE post_id = $1", [id, post.body, new Date().toLocaleDateString()]
         );
         res.json(updatepost);
     } catch (err) {
@@ -111,7 +111,18 @@ app.put('/api/posts/:id', async(req, res) => {
 });
 
 // Delete a post (only owner can delete his own post)
-// TODO: DELETE - delete a post
+app.delete('/api/posts/:id', async(req, res) => {
+    try {
+        const { id } = req.params;
+        console.log("delete a post request has arrived");
+        const deletepost = await pool.query(
+            "DELETE FROM posts WHERE post_id = $1 RETURNING*", [id]
+        );
+        res.json(deletepost);
+    } catch (err) {
+        console.error(err.message);
+    }
+});
 
 // Sign up a user
 app.post('/auth/signup', async (req, res) => {

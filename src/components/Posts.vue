@@ -1,6 +1,6 @@
 <template>
     <div class="Posts">
-        <div v-for="(post, index) in posts" :key="post.post_id" @click="goToPost(index)">
+        <div v-for="post in posts" :key="post.post_id" @click="goToPost(post)">
           <article>
             <div class="header">
               <p> {{ new Date(post.post_date).toLocaleDateString() }} </p>
@@ -13,6 +13,8 @@
   
   
   <script>
+  import store from "@/store";
+
   export default {
     name: "Posts",
     data() {
@@ -27,8 +29,12 @@
           .then((data) => (this.posts = data))
           .catch((err) => console.log(err.message));
       },
-      goToPost(id) {
-        this.$router.push('/posts/'+id)
+      goToPost(post) {
+        if (post.user_id === store.getters.getUserId) {
+          this.$router.push('/posts/'+post.post_id)
+        } else {
+          console.log("not the post owner")
+        }
       }
     },
     mounted() {

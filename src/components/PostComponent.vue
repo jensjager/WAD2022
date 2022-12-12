@@ -45,25 +45,25 @@
       },
       updatePost() {
         // using Fetch - put method - updates a specific post based on the passed id and the specified body
-        fetch(`http://localhost:3000/api/posts/${this.post.user_id}`, {
+        fetch(`http://localhost:3000/api/posts/${this.post.post_id}`, {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify(this.post),
         })
-            .then((response) => {
-              console.log(response.data);
-              // We are using the router instance of this element to navigate to a different URL location
-              this.$router.push("/api/allposts");
-            })
-            .catch((e) => {
-              console.log(e);
-            });
+        .then((response) => {
+          console.log(response.data);
+          // We are using the router instance of this element to navigate to a different URL location
+          this.$router.push("/api/allposts");
+        })
+        .catch((e) => {
+          console.log(e);
+        });
       },
       deletePost() {
         // using Fetch - delete method - delets a specific post based on the passed id
-        fetch(`http://localhost:3000/api/posts/${this.post.id}`, {
+        fetch(`http://localhost:3000/api/posts/${this.post.post_id}`, {
           method: "DELETE",
           headers: { "Content-Type": "application/json" },
         })

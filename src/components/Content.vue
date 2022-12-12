@@ -6,7 +6,7 @@
     <Posts/>
     <div class="post-buttons">
       <button @click="addPost">Add post</button>
-      <button>Delete all</button>
+      <button @click="deletePosts">Delete all</button>
     </div>
   </div>
 </template>
@@ -21,7 +21,6 @@ export default {
     Posts
   },
   methods: {
-      
     logout() {
       fetch('http://localhost:3000/auth/logout', {
         credentials: "include"
@@ -52,6 +51,9 @@ export default {
             console.log(e);
             console.log('error with authentication')
           })
+    },
+    deletePosts() {
+      console.log(store.getters.getUserId)
     }
   }
 }
