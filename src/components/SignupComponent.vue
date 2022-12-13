@@ -107,6 +107,10 @@ label {
   text-align: right;
 }
 
+::placeholder {
+  text-align: center;
+}
+
 input, button, label, p {
   font-size: large;
   margin: 0;

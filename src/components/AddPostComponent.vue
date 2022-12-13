@@ -3,8 +3,8 @@
     <form>
       <h3>Add Post</h3>
       <div class="row">
-        <label for="body">Body: </label>
-        <input name="body" type="text" id="body" required v-model="body"/>
+        <label for="body">Body</label>
+        <input name="body" type="text" id="body" placeholder="body" required v-model="body"/>
       </div>
       <div class="row">
         <button type="button" @click="addPost">Add Post</button>
@@ -90,6 +90,10 @@ input {
   border-radius: 15px;
   border: 0;
   width: 50%;
+}
+
+::placeholder {
+  text-align: center;
 }
 
 button {
