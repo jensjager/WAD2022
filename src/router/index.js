@@ -39,12 +39,28 @@ const routes = [
     {
         path: '/addPost',
         name: 'AddPost',
-        component: AddPost
+        component: AddPost,
+        beforeEnter: async (to, from, next) => {
+            let authResult = await auth.authenticated();
+            if (!authResult) {
+                next('/login');
+            } else {
+                next()
+            }
+        }
     },
     {
         path: '/posts/:id',
         name: 'Post',
-        component: APost
+        component: APost,
+        beforeEnter: async (to, from, next) => {
+            let authResult = await auth.authenticated();
+            if (!authResult) {
+                next('/login');
+            } else {
+                next()
+            }
+        }
     },
     {
         path: '/:catchAll(.*)',

@@ -75,13 +75,8 @@ app.post('/api/posts', async (req, res) => {
     const token = req.cookies.jwt;
 
     try {
-        if (!token) return res.status(401).json({error: "Unauthenticated user"});
-
         // Gets the id of the user
-        const decoded = jwt.verify(token, secret, (error, decoded) => {
-            if (error) return res.status(401).json({error: "Unauthenticated user"});
-            else return decoded;
-        });
+        const decoded = jwt.verify(token, secret);
 
         const post = req.body;
         const newpost = await pool.query(
@@ -115,13 +110,8 @@ app.put('/api/posts/:id', async (req, res) => {
     const token = req.cookies.jwt;
 
     try {
-        if (!token) return res.status(401).json({error: "Unauthenticated user"});
-
         // Used to get id of current authenticated users
-        const decoded = jwt.verify(token, secret, (error, decoded) => {
-            if (error) return res.status(401).json({error: "Unauthenticated user"});
-            else return decoded;
-        });
+        const decoded = jwt.verify(token, secret);
         const {id} = req.params;
         const newPostBody = req.body.body;
 
@@ -146,13 +136,8 @@ app.delete('/api/posts/:id', async (req, res) => {
     const token = req.cookies.jwt;
 
     try {
-        if (!token) return res.status(401).json({error: "Unauthenticated user"});
-
         // Used to get id of current authenticated user
-        const decoded = jwt.verify(token, secret, (error, decoded) => {
-            if (error) return res.status(401).json({error: "Unauthenticated user"});
-            else return decoded;
-        });
+        const decoded = jwt.verify(token, secret);
         const {id} = req.params;
 
         const post = await pool.query(
@@ -176,12 +161,8 @@ app.delete('/api/delete', async (req, res) => {
     const token = req.cookies.jwt;
 
     try {
-        if (!token) return res.status(401).json({error: "Unauthenticated user"});
-
-        const decoded = jwt.verify(token, secret, (error, decoded) => {
-            if (error) return res.status(401).json({error: "Unauthenticated user"});
-            else return decoded;
-        });
+        // Used to get id of current authenticated user
+        const decoded = jwt.verify(token, secret);
 
         const deletePosts = await pool.query(
             "DELETE FROM posts WHERE user_id = $1 RETURNING*", [decoded.id]
