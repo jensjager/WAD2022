@@ -6,7 +6,7 @@
     <div class="posts">
       <article class="post" v-for="post in posts" :key="post.post_id" @click="goToPost(post)">
         <div class="header">
-          <p> {{ new Date(post.post_date).toLocaleDateString() }} </p>
+          <p> {{ new Date(post.post_date).toDateString().substring(4) }} </p>
         </div>
         <p class="body"> {{ post.body }} </p>
       </article>
